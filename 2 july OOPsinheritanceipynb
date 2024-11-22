@@ -1,0 +1,734 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "0be38519-410e-43be-8b18-7e2e7e9c4c3a",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "1. Explain what inheritance is in object-oriented programming and why it is used. give me short answer\n",
+    "\n",
+    "Inheritance in object-oriented programming (OOP) is a mechanism where a class (child class) inherits properties and methods from another class (parent class). It allows the child class to reuse code from the parent class and extend or modify its functionality.\n",
+    "\n",
+    "### Why it is used:\n",
+    "1. **Code Reusability**: Avoids duplicating code by reusing functionality from the parent class.\n",
+    "2. **Extensibility**: Allows new classes to be created based on existing ones with added or modified features.\n",
+    "3. **Simplified Maintenance**: Changes made to the parent class automatically apply to child classes.\n",
+    "4. **Organization**: Helps model real-world relationships and organize code hierarchically.\n",
+    "\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "d3c1bb6a-5321-4852-a505-5824d3cff4bd",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "2. Discuss the concept of single inheritance and multiple inheritance, highlighting their\n",
+    "differences and advantages."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "7b3ad864-1bb1-4acf-91e4-96bbcc5c7ff7",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "Single Inheritance vs. Multiple Inheritance\n",
+    "In object-oriented programming (OOP), inheritance is used to enable a class \n",
+    "to inherit properties and behaviors from a parent class. Inheritance can be\n",
+    "categorized into two types: single inheritance and multiple inheritance.\n",
+    "\n",
+    "Single Inheritance\n",
+    "Single inheritance occurs when a class (child class or subclass) inherits from only one parent class (superclass).\n",
+    "In this case, the subclass derives all of its properties and behaviors from that single superclass.\n",
+    "\n",
+    "Example of Single Inheritance:\n",
+    "\n",
+    "\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 40,
+   "id": "00314424-7861-4baa-a01c-617a767cb7a5",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Animal makes a sound\n",
+      "Dog barks\n"
+     ]
+    }
+   ],
+   "source": [
+    "# Parent class (Superclass)\n",
+    "class Animal:\n",
+    "    def speak(self):\n",
+    "        return \"Animal makes a sound\"\n",
+    "\n",
+    "# Child class (Subclass)\n",
+    "class Dog(Animal):  # Inheriting from only one class (Animal)\n",
+    "    def bark(self):\n",
+    "        return \"Dog barks\"\n",
+    "\n",
+    "# Creating an instance of the subclass\n",
+    "dog = Dog()\n",
+    "print(dog.speak())  # Inherited from Animal class\n",
+    "print(dog.bark())   # Defined in Dog class\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "4193862f-02f5-4f9b-a626-a2c25920b85b",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "3. Explain the terms \"base class\" and \"derived class\" in the context of inheritance.\n",
+    "In the context of inheritance in object-oriented programming:\n",
+    "Base Class: Also known as the parent class or superclass, it is the class that provides common\n",
+    "properties and methods that can be inherited by other classes. It defines the general behavior\n",
+    "that other classes can extend or modify.\n",
+    "Derived Class: Also known as the child class or subclass, it is the class that inherits properties\n",
+    "and methods from a base class. The derived class can extend, override, or add its own\n",
+    "functionality based on the inherited behavior from the base class.\n",
+    "\n",
+    "    "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 42,
+   "id": "8696d9ea-4100-4b72-b44f-fcf7c0ec8383",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Dog barks\n"
+     ]
+    }
+   ],
+   "source": [
+    "# Base class\n",
+    "class Animal:\n",
+    "    def speak(self):\n",
+    "        return \"Animal makes a sound\"\n",
+    "\n",
+    "# Derived class\n",
+    "class Dog(Animal):  # Inherits from Animal (Base class)\n",
+    "    def speak(self):\n",
+    "        return \"Dog barks\"\n",
+    "\n",
+    "# Creating an instance of the derived class\n",
+    "dog = Dog()\n",
+    "print(dog.speak())  # Output: Dog barks\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "7098a38e-4319-42a8-9070-d2da8b63ad96",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "Animal is the base class.\n",
+    "Dog is the derived class that inherits from Animal and overrides the speak() method."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "700fa3ea-e473-4768-988d-fa6118e14bfd",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "4 What is the significance of the \"protected\" access modifier in inheritance? How does\n",
+    "it differ from \"private\" and \"public\" modifiers?"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "989206a8-466d-4389-b4b3-a09e8a0f52d3",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "In object-oriented programming, access modifiers control the visibility and accessibility of class\n",
+    "members (variables and methods). The \"protected\", \"private\", and \"public\" modifiers are key to\n",
+    "defining how and where class members can be accessed, especially in the context of inheritance.\n",
+    "Protected Access Modifier\n",
+    "This means that protected members can be accessed in the derived class, even if the derived\n",
+    "class is in a different package or module.\n",
+    "Protected members cannot be accessed directly from outside the class hierarchy (i.e., not from unrelated classes).\n",
+    "Significance in Inheritance:\n",
+    "The protected modifier is often used to allow derived classes to have access to certain attributes\n",
+    "or methods of the base class, while still keeping them hidden from external (non-related)\n",
+    "classes. This helps maintain encapsulation while promoting reusability in subclasses.\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 44,
+   "id": "7bd7e812-2e01-4bf5-abef-f759aa12716c",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Dog's protected name is: Buddy\n"
+     ]
+    }
+   ],
+   "source": [
+    "class Animal:\n",
+    "    def __init__(self, name):\n",
+    "        self.name = name\n",
+    "        self._protected_name = name  # Protected member\n",
+    "\n",
+    "class Dog(Animal):\n",
+    "    def __init__(self, name):\n",
+    "        super().__init__(name)\n",
+    "        print(f\"Dog's protected name is: {self._protected_name}\")\n",
+    "\n",
+    "dog = Dog(\"Buddy\")\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "a927e4b2-2225-41a8-a995-206b55eb9a2d",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "In this example, the _protected_name is a protected member of the Animal class, and it is accessed in the Dog subclass."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "252fdc69-64e5-475c-9c5f-218967997594",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "5  What is the purpose of the \"super\" keyword in inheritance? Provide an example.\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "4934bbb2-fc46-408e-b58d-afdd91c21701",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "The super keyword in object-oriented programming is used to refer to the parent class (superclass)\n",
+    "from within a child class (subclass). It allows the subclass to access methods or attributes from the\n",
+    "parent class, particularly useful when:\n",
+    "1 Calling the parent class’s constructor: This ensures that the initialization of the parent class is\n",
+    "properly done when creating an instance of the subclass.\n",
+    "2 Accessing overridden methods: When a method in the child class overrides a method in the\n",
+    "parent class, you can use super to call the parent class's version of the method.\n",
+    "Purpose of super:\n",
+    "1 Invoke parent class methods: When the child class overrides a method from the parent class,\n",
+    "you can use super() to call the method from the parent class.\n",
+    "2 Call parent class constructor: Use super() to invoke the constructor of the parent class,\n",
+    "  ensuring the parent class is initialized properly."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 46,
+   "id": "19b6c7e0-f22f-4561-acdc-fb4e088438cc",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Rex barks\n"
+     ]
+    }
+   ],
+   "source": [
+    "class Animal:\n",
+    "    def __init__(self, name):\n",
+    "        self.name = name\n",
+    "\n",
+    "    def speak(self):\n",
+    "        return f\"{self.name} makes a sound\"\n",
+    "\n",
+    "class Dog(Animal):\n",
+    "    def __init__(self, name, breed):\n",
+    "        # Call the parent class constructor\n",
+    "        super().__init__(name)\n",
+    "        self.breed = breed\n",
+    "\n",
+    "    def speak(self):\n",
+    "        # Call the parent class speak method\n",
+    "        return f\"{self.name} barks\"\n",
+    "\n",
+    "# Creating an instance of Dog\n",
+    "dog = Dog(\"Rex\", \"Labrador\")\n",
+    "print(dog.speak())  # Output: Rex barks\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "4b0adfeb-f3cf-4a8f-9ea7-08089b7a2249",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "In this example, the Dog class inherits from the Animal class.\n",
+    "The super().__init__(name) line in the Dog class’s __init__ method calls the constructor of the Animal class, initializing the name attribute.\n",
+    "The super().speak() method is used to call the speak() method from the parent class (if needed), though in this case, speak()\n",
+    "is overridden in the child class."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "bf083327-5c04-4610-afa5-a6ea24bd71a1",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "6 Create a base class called \"Vehicle\" with attributes like \"make\", \"model\", and \"year\".\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 50,
+   "id": "4ecc9954-6ef4-4024-9f13-8a8ace24ae1d",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "2022 Toyota Corolla, Fuel Type: Petrol\n"
+     ]
+    }
+   ],
+   "source": [
+    "# Base class Vehicle\n",
+    "class Vehicle:\n",
+    "    def __init__(self, make, model, year):\n",
+    "        self.make = make        # The manufacturer of the vehicle\n",
+    "        self.model = model      # The model of the vehicle\n",
+    "        self.year = year        # The year the vehicle was manufactured\n",
+    "\n",
+    "    def display_info(self):\n",
+    "        \"\"\"Display information about the vehicle.\"\"\"\n",
+    "        return f\"{self.year} {self.make} {self.model}\"\n",
+    "\n",
+    "# Derived class Car that inherits from Vehicle\n",
+    "class Car(Vehicle):\n",
+    "    def __init__(self, make, model, year, fuel_type):\n",
+    "        # Call the constructor of the base class (Vehicle)\n",
+    "        super().__init__(make, model, year)\n",
+    "        self.fuel_type = fuel_type  # Additional attribute specific to Car\n",
+    "\n",
+    "    def display_car_info(self):\n",
+    "        \"\"\"Display the car information including fuel type.\"\"\"\n",
+    "        vehicle_info = self.display_info()  # Get vehicle info from the base class method\n",
+    "        return f\"{vehicle_info}, Fuel Type: {self.fuel_type}\"\n",
+    "\n",
+    "# Example usage\n",
+    "car = Car(\"Toyota\", \"Corolla\", 2022, \"Petrol\")\n",
+    "print(car.display_car_info())  # Output: 2022 Toyota Corolla, Fuel Type: Petrol\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "b7dc6b46-b84b-450a-8e0b-70efb708cda2",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "7:- Create a base class called \"Employee\" with attributes like \"name\" and \"salary.\"\n",
+    "Derive two classes, \"Manager\" and \"Developer,\" from \"Employee.\" Add an additional\n",
+    "attribute called \"department\" for the \"Manager\" class and \"programming_language\"\n",
+    "for the \"Developer\" class.\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "bbac4311-5830-4c7c-b79c-2e7915cbeda9",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "Here’s an implementation of the Employee base class with attributes like name and salary, and\n",
+    "two derived classes, Manager and Developer, each with their own additional attributes \n",
+    "(department for Manager, and programming_language for Developer)."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 52,
+   "id": "6310d2fe-3764-4175-b186-e3b428e2cbd4",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Name: Alice, Salary: $90000, Department: HR\n",
+      "Name: Bob, Salary: $80000, Programming Language: Python\n"
+     ]
+    }
+   ],
+   "source": [
+    "# Base class Employee\n",
+    "class Employee:\n",
+    "    def __init__(self, name, salary):\n",
+    "        self.name = name          # The name of the employee\n",
+    "        self.salary = salary      # The salary of the employee\n",
+    "\n",
+    "    def display_info(self):\n",
+    "        \"\"\"Display general information about the employee.\"\"\"\n",
+    "        return f\"Name: {self.name}, Salary: ${self.salary}\"\n",
+    "\n",
+    "# Derived class Manager that inherits from Employee\n",
+    "class Manager(Employee):\n",
+    "    def __init__(self, name, salary, department):\n",
+    "        # Call the constructor of the base class (Employee)\n",
+    "        super().__init__(name, salary)\n",
+    "        self.department = department  # Additional attribute specific to Manager\n",
+    "\n",
+    "    def display_manager_info(self):\n",
+    "        \"\"\"Display manager information including the department.\"\"\"\n",
+    "        employee_info = self.display_info()  # Get employee info from the base class method\n",
+    "        return f\"{employee_info}, Department: {self.department}\"\n",
+    "\n",
+    "# Derived class Developer that inherits from Employee\n",
+    "class Developer(Employee):\n",
+    "    def __init__(self, name, salary, programming_language):\n",
+    "        # Call the constructor of the base class (Employee)\n",
+    "        super().__init__(name, salary)\n",
+    "        self.programming_language = programming_language  # Additional attribute specific to Developer\n",
+    "\n",
+    "    def display_developer_info(self):\n",
+    "        \"\"\"Display developer information including programming language.\"\"\"\n",
+    "        employee_info = self.display_info()  # Get employee info from the base class method\n",
+    "        return f\"{employee_info}, Programming Language: {self.programming_language}\"\n",
+    "\n",
+    "# Example usage\n",
+    "manager = Manager(\"Alice\", 90000, \"HR\")\n",
+    "developer = Developer(\"Bob\", 80000, \"Python\")\n",
+    "\n",
+    "# Display the information of Manager and Developer\n",
+    "print(manager.display_manager_info())  # Output: Name: Alice, Salary: $90000, Department: HR\n",
+    "print(developer.display_developer_info())  # Output: Name: Bob, Salary: $80000, Programming Language: Python\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "d5bc9766-acb3-4ffb-be4b-5c6db2750135",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "8. Design a base class called \"Shape\" with attributes like \"colour\" and \"border_width.\"\n",
+    "Create derived classes, \"Rectangle\" and \"Circle,\" that inherit from \"Shape\" and add\n",
+    "specific attributes like \"length\" and \"width\" for the \"Rectangle\" class and \"radius\" for\n",
+    "the \"Circle\" class.\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "0b52cd94-b221-4d22-aeae-3a3414323c53",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "Here’s how you can design a base class called Shape with attributes like colour and border_width,\n",
+    "and two derived classes called Rectangle and Circle, each with its specific attributes (length and\n",
+    "width for Rectangle, and radius for Circle).                                                                                      "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 54,
+   "id": "2953d56b-b129-42c5-8a45-a66e54c65141",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Colour: Red, Border Width: 2, Length: 10, Width: 5\n",
+      "Colour: Blue, Border Width: 1, Radius: 7\n"
+     ]
+    }
+   ],
+   "source": [
+    "# Base class Shape\n",
+    "class Shape:\n",
+    "    def __init__(self, colour, border_width):\n",
+    "        self.colour = colour          # Colour of the shape\n",
+    "        self.border_width = border_width  # Border width of the shape\n",
+    "\n",
+    "    def display_info(self):\n",
+    "        \"\"\"Display general information about the shape.\"\"\"\n",
+    "        return f\"Colour: {self.colour}, Border Width: {self.border_width}\"\n",
+    "\n",
+    "# Derived class Rectangle that inherits from Shape\n",
+    "class Rectangle(Shape):\n",
+    "    def __init__(self, colour, border_width, length, width):\n",
+    "        # Call the constructor of the base class (Shape)\n",
+    "        super().__init__(colour, border_width)\n",
+    "        self.length = length  # Length of the rectangle\n",
+    "        self.width = width    # Width of the rectangle\n",
+    "\n",
+    "    def display_rectangle_info(self):\n",
+    "        \"\"\"Display rectangle information including its dimensions.\"\"\"\n",
+    "        shape_info = self.display_info()  # Get shape info from the base class method\n",
+    "        return f\"{shape_info}, Length: {self.length}, Width: {self.width}\"\n",
+    "\n",
+    "# Derived class Circle that inherits from Shape\n",
+    "class Circle(Shape):\n",
+    "    def __init__(self, colour, border_width, radius):\n",
+    "        # Call the constructor of the base class (Shape)\n",
+    "        super().__init__(colour, border_width)\n",
+    "        self.radius = radius  # Radius of the circle\n",
+    "\n",
+    "    def display_circle_info(self):\n",
+    "        \"\"\"Display circle information including its radius.\"\"\"\n",
+    "        shape_info = self.display_info()  # Get shape info from the base class method\n",
+    "        return f\"{shape_info}, Radius: {self.radius}\"\n",
+    "\n",
+    "# Example usage\n",
+    "rectangle = Rectangle(\"Red\", 2, 10, 5)\n",
+    "circle = Circle(\"Blue\", 1, 7)\n",
+    "\n",
+    "# Display the information of Rectangle and Circle\n",
+    "print(rectangle.display_rectangle_info())  # Output: Colour: Red, Border Width: 2, Length: 10, Width: 5\n",
+    "print(circle.display_circle_info())  # Output: Colour: Blue, Border Width: 1, Radius: 7\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "20cd6b20-448c-49f9-800e-1e8af8958bf4",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "9 Create a base class called \"Device\" with attributes like \"brand\" and \"model.\" Derive\n",
+    "two classes, \"Phone\" and \"Tablet,\" from \"Device.\" Add specific attributes like\n",
+    "\"screen_size\" for the \"Phone\" class and \"battery_capacity\" for the \"Tablet\" class.\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "ef0e5da6-2c8c-4c46-9910-80ad618592bf",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "Here’s an implementation of a base class called Device with attributes like brand and model, and\n",
+    "two derived classes, Phone and Tablet, each with their own specific attributes (screen_size for\n",
+    "Phone and battery_capacity for Tablet).                                                                                "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 56,
+   "id": "a3819703-3710-4b8f-bca4-d7d06f6e7455",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Brand: Apple, Model: iPhone 13, Screen Size: 6.1 inches\n",
+      "Brand: Samsung, Model: Galaxy Tab S7, Battery Capacity: 8000 mAh\n"
+     ]
+    }
+   ],
+   "source": [
+    "# Base class Device\n",
+    "class Device:\n",
+    "    def __init__(self, brand, model):\n",
+    "        self.brand = brand      # The brand of the device\n",
+    "        self.model = model      # The model of the device\n",
+    "\n",
+    "    def display_info(self):\n",
+    "        \"\"\"Display general information about the device.\"\"\"\n",
+    "        return f\"Brand: {self.brand}, Model: {self.model}\"\n",
+    "\n",
+    "# Derived class Phone that inherits from Device\n",
+    "class Phone(Device):\n",
+    "    def __init__(self, brand, model, screen_size):\n",
+    "        # Call the constructor of the base class (Device)\n",
+    "        super().__init__(brand, model)\n",
+    "        self.screen_size = screen_size  # Screen size specific to Phone\n",
+    "\n",
+    "    def display_phone_info(self):\n",
+    "        \"\"\"Display phone information including screen size.\"\"\"\n",
+    "        device_info = self.display_info()  # Get device info from the base class method\n",
+    "        return f\"{device_info}, Screen Size: {self.screen_size} inches\"\n",
+    "\n",
+    "# Derived class Tablet that inherits from Device\n",
+    "class Tablet(Device):\n",
+    "    def __init__(self, brand, model, battery_capacity):\n",
+    "        # Call the constructor of the base class (Device)\n",
+    "        super().__init__(brand, model)\n",
+    "        self.battery_capacity = battery_capacity  # Battery capacity specific to Tablet\n",
+    "\n",
+    "    def display_tablet_info(self):\n",
+    "        \"\"\"Display tablet information including battery capacity.\"\"\"\n",
+    "        device_info = self.display_info()  # Get device info from the base class method\n",
+    "        return f\"{device_info}, Battery Capacity: {self.battery_capacity} mAh\"\n",
+    "\n",
+    "# Example usage\n",
+    "phone = Phone(\"Apple\", \"iPhone 13\", 6.1)\n",
+    "tablet = Tablet(\"Samsung\", \"Galaxy Tab S7\", 8000)\n",
+    "\n",
+    "# Display the information of Phone and Tablet\n",
+    "print(phone.display_phone_info())  # Output: Brand: Apple, Model: iPhone 13, Screen Size: 6.1 inches\n",
+    "print(tablet.display_tablet_info())  # Output: Brand: Samsung, Model: Galaxy Tab S7, Battery Capacity: 8000 mAh\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "34868551-325c-4316-9724-222362e98f8b",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "10  Create a base class called \"BankAccount\" with attributes like \"account_number\" and\n",
+    "\"balance.\" Derive two classes, \"SavingsAccount\" and \"CheckingAccount,\" from\n",
+    "\"BankAccount.\" Add specific methods like \"calculate_interest\" for the\n",
+    "\"SavingsAccount\" class and \"deduct_fees\" for the \"CheckingAccount\" class.\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "1b9ae7cc-b3d5-4894-af10-a2a204e7f7e5",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "Here's how you can design a base class called BankAccount with attributes like account_number and\n",
+    "balance, and two derived classes: SavingsAccount (which adds a method to calculate interest) and\n",
+    "CheckingAccount (which adds a method to deduct fees)."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 58,
+   "id": "136eb442-11fd-4808-8f73-741e9febd8d7",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Account Number: 123456, Balance: $5000, Interest Rate: 2.5%\n",
+      "Interest: $125.0\n",
+      "Account Number: 654321, Balance: $1000, Monthly Fee: $15\n",
+      "Fee of $15 deducted. New balance: $985\n"
+     ]
+    }
+   ],
+   "source": [
+    "# Base class BankAccount\n",
+    "class BankAccount:\n",
+    "    def __init__(self, account_number, balance):\n",
+    "        self.account_number = account_number  # Account number of the bank account\n",
+    "        self.balance = balance                # Balance of the bank account\n",
+    "\n",
+    "    def display_info(self):\n",
+    "        \"\"\"Display account information.\"\"\"\n",
+    "        return f\"Account Number: {self.account_number}, Balance: ${self.balance}\"\n",
+    "\n",
+    "# Derived class SavingsAccount that inherits from BankAccount\n",
+    "class SavingsAccount(BankAccount):\n",
+    "    def __init__(self, account_number, balance, interest_rate):\n",
+    "        # Call the constructor of the base class (BankAccount)\n",
+    "        super().__init__(account_number, balance)\n",
+    "        self.interest_rate = interest_rate  # Interest rate specific to SavingsAccount\n",
+    "\n",
+    "    def calculate_interest(self):\n",
+    "        \"\"\"Calculate and return the interest for the savings account.\"\"\"\n",
+    "        interest = self.balance * (self.interest_rate / 100)\n",
+    "        return interest\n",
+    "\n",
+    "    def display_savings_info(self):\n",
+    "        \"\"\"Display savings account information including interest rate.\"\"\"\n",
+    "        account_info = self.display_info()  # Get account info from the base class method\n",
+    "        return f\"{account_info}, Interest Rate: {self.interest_rate}%\"\n",
+    "\n",
+    "# Derived class CheckingAccount that inherits from BankAccount\n",
+    "class CheckingAccount(BankAccount):\n",
+    "    def __init__(self, account_number, balance, monthly_fee):\n",
+    "        # Call the constructor of the base class (BankAccount)\n",
+    "        super().__init__(account_number, balance)\n",
+    "        self.monthly_fee = monthly_fee  # Monthly fee specific to CheckingAccount\n",
+    "\n",
+    "    def deduct_fees(self):\n",
+    "        \"\"\"Deduct the monthly fee from the balance.\"\"\"\n",
+    "        if self.balance >= self.monthly_fee:\n",
+    "            self.balance -= self.monthly_fee\n",
+    "            return f\"Fee of ${self.monthly_fee} deducted. New balance: ${self.balance}\"\n",
+    "        else:\n",
+    "            return \"Insufficient balance to deduct fee.\"\n",
+    "\n",
+    "    def display_checking_info(self):\n",
+    "        \"\"\"Display checking account information including monthly fee.\"\"\"\n",
+    "        account_info = self.display_info()  # Get account info from the base class method\n",
+    "        return f\"{account_info}, Monthly Fee: ${self.monthly_fee}\"\n",
+    "\n",
+    "# Example usage\n",
+    "savings = SavingsAccount(\"123456\", 5000, 2.5)\n",
+    "checking = CheckingAccount(\"654321\", 1000, 15)\n",
+    "\n",
+    "# Display SavingsAccount info and calculate interest\n",
+    "print(savings.display_savings_info())  # Output: Account Number: 123456, Balance: $5000, Interest Rate: 2.5%\n",
+    "print(f\"Interest: ${savings.calculate_interest()}\")  # Output: Interest: $125.0\n",
+    "\n",
+    "# Display CheckingAccount info and deduct fee\n",
+    "print(checking.display_checking_info())  # Output: Account Number: 654321, Balance: $1000, Monthly Fee: $15\n",
+    "print(checking.deduct_fees())  # Output: Fee of $15 deducted. New balance: $985\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "6b62c9b0-3e72-4574-903f-7cb6ed6b67de",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3 (ipykernel)",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.12.4"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
